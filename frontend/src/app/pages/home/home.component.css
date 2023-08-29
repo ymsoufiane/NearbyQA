@@ -1,0 +1,11 @@
+.home {
+    height: 100vh !important;
+    overflow: hidden !important;
+}
+
+@media (max-width: 768px) {
+    .home {
+        height: 100vh !important;
+        overflow: scroll !important;
+    }
+}

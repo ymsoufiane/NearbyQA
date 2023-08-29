@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg border-bottom">
+    <div class="container-fluid ">
+
+        <!-- <div class="collapse navbar-collapse pe-5 me-4 " id="navbarSupportedContent"> -->
+
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row justify-content-between align-items-center mx-5 ">
+            <li class="nav-item ms-3">
+                <a routerLink="/" routerLinkActive="active">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i style="font-size: 20px;" class="bi bi-house-door mx-2"></i>
+                        <span class="nav-link">Home</span>
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item ms-3  " role="button" (click)="modalService.open('modal-1')">
+                <div class="d-flex justify-content-center align-items-center ">
+                    <i style="font-size: 20px;" class="bi bi-pen mx-2"></i>
+                    <span class="nav-link active" aria-current="page">Publier</span>
+                </div>
+            </li>
+            <li class="nav-item ms-3 ">
+                <a routerLink="/favorites" routerLinkActive="active">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <i style="font-size: 20px;" class="bi bi-heart mx-2"></i>
+                        <span class="nav-link">Favoris</span>
+                    </div>
+                </a>
+
+            </li>
+
+            <li class="nav-item dropdown d-flex ms-3 justify-content-center align-items-center">
+                <i style="font-size: 25px;" class="bi bi-person mx-2"></i>
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{name | capitalize}}
+                </a>
+                <ul class="dropdown-menu position-absolute ">
+                    <li><a class="dropdown-item " href="#">Action</a></li>
+                    <li><a class="dropdown-item " href="#">Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider ">
+                    </li>
+                    <li><a class="dropdown-item " role="button" (click)="logout()">Logout</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <!-- </div> -->
+</nav>
+<app-popup id="modal-1" style="display: none;">
+    <div class="modal-header">
+        <h5 class="modal-title">You have a question ? </h5>
+        <button type="button" class="btn-close" (click)="modalService.close();"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="title" name="title" placeholder="Title" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <input type="text" [(ngModel)]="question" name="question" placeholder="Question ?" class="form-control" />
+        </div>
+        <div class="py-2">
+            Current Location :
+        </div>
+        <div style="width:100%;height: 300px;">
+            <app-google-map (coordinatesClicked)="setPosition($event)" [localisation_user]="true"></app-google-map>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modalService.close();">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addQuestion()">Save changes</button>
+    </div>
+</app-popup>

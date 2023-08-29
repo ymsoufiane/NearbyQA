@@ -1,0 +1,22 @@
+
+<div class="d-flex justify-content-center align-items-center vh-100 " style="background-color: #f8f9fa;">
+    <div class="bg-white p-4 shadow-sm p-3 mb-5 bg-body rounded" style="width: 400px;">
+        <form>
+            <app-input label="Name" (valueChange)="setName($event)" type="text"></app-input>
+            <app-input label="Email" (valueChange)="setEmail($event)" type="text"></app-input>
+            <app-input label="Password" (valueChange)="setPassword($event)" type="password"></app-input>
+            <div *ngIf="errMessage" class="text-danger text-center mb-4">{{errMessage}}</div>
+            <div *ngIf="successMessage" class="text-success text-center mb-4">{{successMessage}}</div>
+            <div  *ngIf="successMessage"  class="alert alert-success" role="alert">
+                {{successMessage}}
+            </div>
+            
+            <button type="button" (click)="submit()" class="btn btn-primary btn-block mb-4 w-100">Sign in</button>
+            <div class="text-center">
+                <p>Already registered ? <a routerLink="/signin" routerLinkActive="active"  >Login</a></p>
+            </div>
+        </form>
+
+    </div>
+</div>
+```

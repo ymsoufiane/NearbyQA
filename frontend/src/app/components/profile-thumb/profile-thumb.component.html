@@ -1,0 +1,18 @@
+<div class="d-flex ">
+    <div class="profile-thumb d-flex">
+        <a href="#">
+            <figure class="profile-thumb-middle m-0">
+                <img src="/assets/profile-small-9.jpg" class="rounded-circle" [ngStyle]="{'width.px': image_width}"
+                    alt="profile picture">
+            </figure>
+        </a>
+    </div>
+    <div *ngIf="display_name" class="post-title d-flex align-items-center ms-2">
+
+        <div class="posted-author d-flex">
+            <h6 class="author">{{user!.name | capitalize}}</h6>
+            <span style="font-size: 13px;" class="post-time ms-2">{{time | dateFormat}}</span>
+        </div>
+
+    </div>
+</div>

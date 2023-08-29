@@ -1,0 +1,36 @@
+<div class="card p-2 shadow-sm p-3 mt-5 bg-body rounded mx-auto" style="max-width: 500px;">
+    <app-profile-thumb [user]="question.user" [time]="question.updated_at"></app-profile-thumb>
+
+    <div class="post-content">
+        <p class="post-desc p-3">
+            {{question.content}}
+        </p>
+        <hr class="m-1">
+        <div class="post-meta d-flex">
+            <div (click)="favoriteQuestion()" role="button" class="post-meta-like d-flex align-items-center">
+                <div>
+                    {{nbLikes}}
+                </div>
+                <i style="font-size: 23px;" class="bi  ms-1" [ngClass]="is_favorite ? 'bi-heart-fill' : 'bi-heart'"></i>
+
+            </div>
+            <div class="post-meta-comments ms-2 d-flex align-items-center">
+                <div>{{question.responses.length}}</div>
+                <i style="font-size: 23px;" class="bi bi-chat-dots ms-1"></i>
+            </div>
+
+        </div>
+        <hr class="m-1 mb-3">
+        <div class="d-flex">
+            <app-profile-thumb image_width="40" [display_name]="false"></app-profile-thumb>
+            <input type="text" (keydown.enter)="respondQuestion($event)" style="background-color: #f0f2f5;"
+                name="response" placeholder="Responde ..." class="form-control ms-1 shadow-none " />
+        </div>
+        <hr *ngIf="question.responses.length">
+        <ul style="list-style:none">
+            <li *ngFor="let response of question.responses">
+                <app-response-card [response]="response"></app-response-card>
+            </li>
+        </ul>
+    </div>
+</div>

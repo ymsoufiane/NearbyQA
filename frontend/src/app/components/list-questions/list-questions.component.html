@@ -1,0 +1,9 @@
+<div class="row ">
+    <div class="col-12 col-md-5 overflow-auto questionsWrapper">
+        <app-question-card *ngFor="let question of questions ;" [question]="question"></app-question-card>
+        <div class="py-5"></div>
+    </div>
+    <div class="col-12 col-md-7 order-md-last order-first map">
+        <app-google-map></app-google-map>
+    </div>
+</div>

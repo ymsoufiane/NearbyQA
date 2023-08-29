@@ -4,13 +4,18 @@ class AuthenticationController < ApplicationController
 
   # POST /auth/login
   def login
+    # try catch
+    begin 
     @user = User.find_by(email:params[:email])
-    p @user
+    rescue 
+      render json: { error: 'User not found' }, status: :unauthorized
+      return
+    end
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id,name: @user.name,email: @user.email)
       time = Time.now + 24.hours.to_i
       render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
-                     name: @user.name }, status: :ok
+                     name: @user.name, user_id:@user.id }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end

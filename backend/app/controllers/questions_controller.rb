@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
     # GET /questions
     def index
       @questions = Question.all
+      
       render json: @questions
     end
   
@@ -39,12 +40,13 @@ class QuestionsController < ApplicationController
       head :no_content
     end
     
+    # GET /questions/nearby
     def nearby_questions
 
         longitude = params[:longitude].to_i
         latitude = params[:latitude].to_i
         
-        coordinates = [longitude, latitude]
+        coordinates = [latitude,longitude]
         max_distance= params[:maxDistance].to_i
 
         query={
@@ -55,14 +57,13 @@ class QuestionsController < ApplicationController
               },
             }
           }
-        if max_distance
+        if max_distance>0
             query['$near']['$maxDistance'] = max_distance
         end
-
         
         @questions = Question.where(
             location: query
-          ).limit(10)
+          ).limit(5)
         render json: @questions
     end
 
@@ -75,7 +76,7 @@ class QuestionsController < ApplicationController
     end
   
     def question_params
-      params.require(:question).permit(:title, :content, :latitude, :longitude, :maxDistance, location: [],)
+      params.require(:question).permit(:title, :content, :latitude, :longitude, :maxDistance, location: [])
     end
   end
   

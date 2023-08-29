@@ -69,6 +69,20 @@ Welcome to LocalQuery, where you can get your local questions answered by people
     ```bash
     ng serve
     ```
+## Screenshots
+ #### 1.Home Page
+![Alt Text](./screenshot/home.JPG)
+
+ #### 2. Post Question
+
+![Alt Text](./screenshot/post_question.JPG)
+
+ #### 3. Signing
+![Alt Text](./screenshot/signin.JPG)
+
+ #### 4. Signup
+![Alt Text](./screenshot/singnup.JPG)
+
 
 ## Usage
 
